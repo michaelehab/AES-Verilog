@@ -1,0 +1,70 @@
+# Reading D:/QuartusLite/modelsim_ase/tcl/vsim/pref.tcl
+# do AES_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying D:/QuartusLite/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+D:/Downloads/College/Logic2/Projects {D:/Downloads/College/Logic2/Projects/subBytes.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 19:31:00 on May 01,2022
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/College/Logic2/Projects" D:/Downloads/College/Logic2/Projects/subBytes.v 
+# -- Compiling module subBytes
+# 
+# Top level modules:
+# 	subBytes
+# End time: 19:31:01 on May 01,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/College/Logic2/Projects {D:/Downloads/College/Logic2/Projects/sbox.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 19:31:01 on May 01,2022
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/College/Logic2/Projects" D:/Downloads/College/Logic2/Projects/sbox.v 
+# -- Compiling module sbox
+# 
+# Top level modules:
+# 	sbox
+# End time: 19:31:01 on May 01,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/College/Logic2/Projects {D:/Downloads/College/Logic2/Projects/subBytes_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 19:31:01 on May 01,2022
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/College/Logic2/Projects" D:/Downloads/College/Logic2/Projects/subBytes_tb.v 
+# -- Compiling module subBytes_tb
+# 
+# Top level modules:
+# 	subBytes_tb
+# End time: 19:31:01 on May 01,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+D:/Downloads/College/Logic2/Projects {D:/Downloads/College/Logic2/Projects/subBytes_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 19:31:01 on May 01,2022
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/College/Logic2/Projects" D:/Downloads/College/Logic2/Projects/subBytes_tb.v 
+# -- Compiling module subBytes_tb
+# 
+# Top level modules:
+# 	subBytes_tb
+# End time: 19:31:01 on May 01,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  subBytes_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" subBytes_tb 
+# Start time: 19:31:02 on May 01,2022
+# Loading work.subBytes_tb
+# Loading work.subBytes
+# Loading work.sbox
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# input= 193de3bea0f4e22b9ac68d2ae9f84808 ,output= d42711aee0bf98f1b8b45de51e415230
+# End time: 19:31:50 on May 01,2022, Elapsed time: 0:00:48
+# Errors: 0, Warnings: 0

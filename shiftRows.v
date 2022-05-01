@@ -1,2 +1,2 @@
-module shiftRows;
+module shiftRows();
 endmodule
