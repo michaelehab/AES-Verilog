@@ -1,1 +1,2 @@
 module sbox;
+endmodule
