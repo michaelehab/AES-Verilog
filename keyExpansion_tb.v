@@ -1,6 +1,6 @@
 module keyExpansion_tb;
 reg [0:127] k;
-wire[1408:0] out;
+wire[1407:0] out;
 
 keyExpansion ks(k,out);
 initial begin
