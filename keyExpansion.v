@@ -1,36 +1,45 @@
 module keyExpansion(key,w);
 parameter nk=4;parameter nr=10;
 input [0:127] key;
-output reg[0:(128*(nr+1))] w;
+output reg [0:(128*(nr+1))-1] w;
 reg [0:31] temp;
 reg [0:31] r;
 reg [0:31] rot;
 reg [0:31] x;
 reg [0:31] rconv;
 
+reg [0:31]new;
+
 integer i;
 
+parameter u=4;
 
 always@*
  begin
-  w={key[0:127]};
-//
-//for(i=nk;i< 4*(nr+1);i=i+1) begin
-//	
-//	  temp =w[(i-1)*32+:32];
-//	if(i % nk ==0) begin
-//			 rot=rotword(temp); 
-//			x=subwordx (rot);
-//			 temp=x;
-//			rconv=rconx (i/nk);	
-//
-//			 temp= temp ^ r;
-//		end
-//	else if(nk >6 && i % nk==4) 
-//		temp=subwordx (temp);	
-//	  w={w[0:127],(w[(i-nk)*32+:32] ^ temp)};
-//	
-//end
+// $monitor("temp= %h ,rotword=%h,subword=%h,rcon=%h,new=%h ",temp,rot,x,rconv,new);
+   w=key;
+for(i=nk;i< 4*(nr+1);i=i+1) begin
+	
+	  temp =w[(128*(nr+1)-32)+:32];
+//	   #10;
+	if(i % nk ==0) begin
+			 rot=rotword(temp); 
+//			 #10;
+			x=subwordx (rot);
+//			 #10;
+			rconv=rconx (i/nk);	
+//			#10;
+			 temp= x ^ rconv;
+//	 #10;
+		end
+	else if(nk >6 && i % nk==4) begin
+		temp=subwordx (temp);
+		end
+		new=	(w[(128*(nr+1)-128)+:32] ^ temp);
+//		#10;
+		w=w<<32;
+		w={w[0:(128*(nr+1)-32)-1],new};
+end
 
 end
 
