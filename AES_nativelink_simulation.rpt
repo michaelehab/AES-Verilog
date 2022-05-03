@@ -5,8 +5,8 @@ Info: NativeLink has detected Verilog design -- Verilog simulation models will b
 
 Sim Mode              :  RTL
 Family                :  cyclonev
-Quartus root          :  d:/quartuslite/quartus/bin64/
-Quartus sim root      :  d:/quartuslite/quartus/eda/sim_lib
+Quartus root          :  c:/intelfpga_lite/18.1/quartus/bin64/
+Quartus sim root      :  c:/intelfpga_lite/18.1/quartus/eda/sim_lib
 Simulation Tool       :  modelsim-altera
 Simulation Language   :  verilog
 Simulation Mode       :  GUI
@@ -17,7 +17,7 @@ Sim dir               :  simulation\modelsim
 =======================================================
 
 Info: Starting NativeLink simulation with ModelSim-Altera software
-Sourced NativeLink script d:/quartuslite/quartus/common/tcl/internal/nativelink/modelsim.tcl
-Warning: File AES_run_msim_rtl_verilog.do already exists - backing up current file as AES_run_msim_rtl_verilog.do.bak3
+Sourced NativeLink script c:/intelfpga_lite/18.1/quartus/common/tcl/internal/nativelink/modelsim.tcl
+Warning: File AES_run_msim_rtl_verilog.do already exists - backing up current file as AES_run_msim_rtl_verilog.do.bak11
 Info: Spawning ModelSim-Altera Simulation software 
 Info: NativeLink simulation flow was successful

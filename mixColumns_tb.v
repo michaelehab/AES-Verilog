@@ -1,7 +1,7 @@
 module mixColumns_tb;
-reg [127:0] in;
+reg [0:127] in;
 
-wire [127:0] out;	
+wire [0:127] out;	
 
 
 mixColumns m (in,out);
