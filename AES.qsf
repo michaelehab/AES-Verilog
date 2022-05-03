@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY shiftRows_tb
+set_global_assignment -name TOP_LEVEL_ENTITY keyExpansion
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "21:59:37  APRIL 30, 2022"
 set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
@@ -77,9 +77,6 @@ set_global_assignment -name EDA_TEST_BENCH_NAME subword_tb -section_id eda_simul
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id subword_tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME subword_tb -section_id subword_tb
 set_global_assignment -name VERILOG_FILE shiftRows_tb.v
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name EDA_TEST_BENCH_FILE mixColumns_tb.v -section_id mixColumns_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE subBytes_tb.v -section_id subBytes_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE subword_tb.v -section_id subword_tb
@@ -87,4 +84,7 @@ set_global_assignment -name EDA_TEST_BENCH_NAME shiftRows_tb -section_id eda_sim
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id shiftRows_tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME shiftRows_tb -section_id shiftRows_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE shiftRows_tb.v -section_id shiftRows_tb
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
