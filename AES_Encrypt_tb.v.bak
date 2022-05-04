@@ -1,0 +1,9 @@
+module AES_Encrypt_tb;
+reg [127:0] in;
+wire [127:0] out;
+reg [127:0] key;
+
+AES_Encrypt a(in,key,out);
+
+
+endmodule
