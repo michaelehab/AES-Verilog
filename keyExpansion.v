@@ -1,5 +1,4 @@
-module keyExpansion(key,w);
-parameter nk=4;parameter nr=10;
+module keyExpansion#(parameter nk=4,parameter nr=10)(key,w);
 input [0:127] key;
 output reg [0:(128*(nr+1))-1] w;
 reg [0:31] temp;
@@ -12,7 +11,6 @@ reg [0:31]new;
 
 integer i;
 
-parameter u=4;
 
 always@*
  begin
