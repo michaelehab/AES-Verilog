@@ -2,10 +2,11 @@ module AES_Encrypt#(parameter N=128,parameter Nr=10,parameter Nk=4)(in,key,out);
 input [127:0] in;
 input [N-1:0] key;
 output [127:0] out;
-wire [127:0] state;
 wire [(128*(Nr+1))-1 :0] fullkeys;
 wire [127:0] intermediate  [Nr+1:0] ;
 wire [127:0] temp;
+wire [127:0] afterSubBytes;
+wire [127:0] afterShiftRows;
 
 keyExpansion #(Nk,Nr) k (key,fullkeys);
 
@@ -18,11 +19,13 @@ generate
 		encryptRound r(intermediate[i-1],fullkeys[(((128*(Nr+1))-1)-128*i)-:128],intermediate[i]);
 		
 		end
-			assign out=intermediate[9];
+		subBytes sr(intermediate[Nr-1],afterSubBytes);
+		shiftRows rm(afterSubBytes,afterShiftRows);
+		addRoundKey bk(afterShiftRows,intermediate[Nr],fullkeys[127:0]);
+			assign out=intermediate[Nr];
 
 endgenerate
-//wire [127:0] afterSubBytes1;
-//wire [127:0] afterShiftRows1;
+
 //wire [127:0] afterMixColumns1;
 //wire [127:0] afterAddroundKey;
 //reg [127 :0] currentKey;
