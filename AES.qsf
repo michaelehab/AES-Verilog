@@ -56,7 +56,6 @@ set_global_assignment -name VERILOG_FILE AES_Encrypt.v
 set_global_assignment -name VERILOG_FILE AES_Decrypt.v
 set_global_assignment -name VERILOG_FILE subBytes.v
 set_global_assignment -name VERILOG_FILE sbox.v
-set_global_assignment -name VERILOG_FILE rcon.v
 set_global_assignment -name VERILOG_FILE mixColumns_tb.v
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
@@ -71,8 +70,6 @@ set_global_assignment -name EDA_TEST_BENCH_NAME subBytes_tb -section_id eda_simu
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id subBytes_tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME subBytes_tb -section_id subBytes_tb
 set_global_assignment -name VERILOG_FILE subBytes_tb.v
-set_global_assignment -name VERILOG_FILE subword.v
-set_global_assignment -name VERILOG_FILE subword_tb.v
 set_global_assignment -name EDA_TEST_BENCH_NAME subword_tb -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id subword_tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME subword_tb -section_id subword_tb
@@ -89,18 +86,18 @@ set_global_assignment -name EDA_TEST_BENCH_NAME addRoundKey_tb -section_id eda_s
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id addRoundKey_tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME addRoundKey_tb -section_id addRoundKey_tb
 set_global_assignment -name VERILOG_FILE AES_Encrypt_tb.v
+set_global_assignment -name EDA_TEST_BENCH_NAME AES_Encrypt_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id AES_Encrypt_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME AES_Encrypt_tb -section_id AES_Encrypt_tb
+set_global_assignment -name VERILOG_FILE encryptRound.v
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name EDA_TEST_BENCH_FILE mixColumns_tb.v -section_id mixColumns_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE subBytes_tb.v -section_id subBytes_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE subword_tb.v -section_id subword_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE shiftRows_tb.v -section_id shiftRows_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE keyExpansion_tb.v -section_id keyExpansion_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE addRoundKey_tb.v -section_id addRoundKey_tb
-set_global_assignment -name EDA_TEST_BENCH_NAME AES_Encrypt_tb -section_id eda_simulation
-set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id AES_Encrypt_tb
-set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME AES_Encrypt_tb -section_id AES_Encrypt_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE AES_Encrypt_tb.v -section_id AES_Encrypt_tb
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name VERILOG_FILE encryptRound.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

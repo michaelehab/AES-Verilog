@@ -1,5 +1,5 @@
 module keyExpansion#(parameter nk=4,parameter nr=10)(key,w);
-input [0:127] key;
+input [0:(nk*32)-1] key;
 output reg [0:(128*(nr+1))-1] w;
 reg [0:31] temp;
 reg [0:31] r;
@@ -33,7 +33,7 @@ for(i=nk;i< 4*(nr+1);i=i+1) begin
 	else if(nk >6 && i % nk==4) begin
 		temp=subwordx (temp);
 		end
-		new=	(w[(128*(nr+1)-128)+:32] ^ temp);
+		new=	(w[(128*(nr+1)-(nk*32))+:32] ^ temp);
 //		#10;
 		w=w<<32;
 		w={w[0:(128*(nr+1)-32)-1],new};
