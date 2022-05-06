@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY inverseShiftRows_tb
+set_global_assignment -name TOP_LEVEL_ENTITY AES_Encrypt
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "21:59:37  APRIL 30, 2022"
 set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
@@ -62,7 +62,7 @@ set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
-set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH inverseShiftRows_tb -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH AES_Encrypt_tb -section_id eda_simulation
 set_global_assignment -name EDA_TEST_BENCH_NAME mixColumns_tb -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id mixColumns_tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME mixColumns_tb -section_id mixColumns_tb
@@ -92,6 +92,9 @@ set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME AES_Encrypt_tb -section_i
 set_global_assignment -name VERILOG_FILE encryptRound.v
 set_global_assignment -name VERILOG_FILE inverseShiftRows.v
 set_global_assignment -name VERILOG_FILE inverseShiftRows_tb.v
+set_global_assignment -name EDA_TEST_BENCH_NAME inverseShiftRows_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id inverseShiftRows_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME inverseShiftRows_tb -section_id inverseShiftRows_tb
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -102,8 +105,5 @@ set_global_assignment -name EDA_TEST_BENCH_FILE shiftRows_tb.v -section_id shift
 set_global_assignment -name EDA_TEST_BENCH_FILE keyExpansion_tb.v -section_id keyExpansion_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE addRoundKey_tb.v -section_id addRoundKey_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE AES_Encrypt_tb.v -section_id AES_Encrypt_tb
-set_global_assignment -name EDA_TEST_BENCH_NAME inverseShiftRows_tb -section_id eda_simulation
-set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id inverseShiftRows_tb
-set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME inverseShiftRows_tb -section_id inverseShiftRows_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE inverseShiftRows_tb.v -section_id inverseShiftRows_tb
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

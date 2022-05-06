@@ -1,42 +1,32 @@
-module keyExpansion#(parameter nk=4,parameter nr=10)(key,w);
-input [0:(nk*32)-1] key;
-output reg [0:(128*(nr+1))-1] w;
+module keyExpansion #(parameter nk=4,parameter nr=10)(key,w);
+input [0 : (nk * 32) - 1] key;
+output reg [0 : (128 * (nr + 1)) - 1] w;
 reg [0:31] temp;
 reg [0:31] r;
 reg [0:31] rot;
 reg [0:31] x;
 reg [0:31] rconv;
-
 reg [0:31]new;
 
 integer i;
 
 
-always@*
- begin
-// $monitor("temp= %h ,rotword=%h,subword=%h,rcon=%h,new=%h ",temp,rot,x,rconv,new);
-   w=key;
-for(i=nk;i< 4*(nr+1);i=i+1) begin
-	
-	  temp =w[(128*(nr+1)-32)+:32];
-//	   #10;
-	if(i % nk ==0) begin
-			 rot=rotword(temp); 
-//			 #10;
-			x=subwordx (rot);
-//			 #10;
-			rconv=rconx (i/nk);	
-//			#10;
-			 temp= x ^ rconv;
-//	 #10;
-		end
-	else if(nk >6 && i % nk==4) begin
-		temp=subwordx (temp);
-		end
-		new=	(w[(128*(nr+1)-(nk*32))+:32] ^ temp);
-//		#10;
-		w=w<<32;
-		w={w[0:(128*(nr+1)-32)-1],new};
+always@* begin
+	w = key;
+	for(i = nk; i < 4*(nr + 1); i = i + 1) begin
+	temp = w[(128 * (nr + 1) - 32) +: 32];
+	if(i % nk == 0) begin
+		rot = rotword(temp);
+		x = subwordx (rot);
+		rconv = rconx (i/nk);
+		temp = x ^ rconv;
+	end
+	else if(nk >6 && i % nk == 4) begin
+		temp = subwordx(temp);
+	end
+	new = (w[(128*(nr+1)-(nk*32))+:32] ^ temp);
+	w = w << 32;
+	w = {w[0 : (128 * (nr + 1) - 32) - 1], new};
 end
 
 end
@@ -57,13 +47,10 @@ subwordx[0:7]=c(a[0:7]);
 subwordx[8:15]=c(a[8:15]);
 subwordx[16:23]=c(a[16:23]);
 subwordx[24:31]=c(a[24:31]);
-
-
 end
 endfunction
 
-function [7:0] c(input [7:0] a);
-    
+function [7:0] c(input [7:0] a);  
 begin
     case (a)
       8'h00: c=8'h63;
@@ -323,15 +310,12 @@ begin
 	   8'hfe: c=8'hbb;
 	   8'hff: c=8'h16;
 	endcase
-
-
 end
 endfunction
 
 
 function[0:31] rconx;
 input [0:31] r; 
-
 begin
  case(r)
     4'h1: rconx=32'h01000000;
@@ -348,8 +332,5 @@ begin
   endcase
   end
 endfunction
-
-
-
 
 endmodule
