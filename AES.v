@@ -1,7 +1,5 @@
-module AES(clk, reset, enable, led);
+module AES(enable, led);
 output wire led;
-input clk; 
-input reset;
 input enable;
 
 // The plain text used as input
@@ -31,6 +29,6 @@ AES_Decrypt #(192,12,6) b2(encrypted192,key192,decrypted192);
 AES_Decrypt #(256,14,8) c2(encrypted256,key256,decrypted256);
 
 // The led will be on only if the decryption result is the same as the plain text
-assign led = (decrypted128 == in && decrypted192 == in && decrypted256 == in && !reset) ? 1'b1 : 1'b0;
+assign led = (decrypted128 == in && decrypted192 == in && decrypted256 == in && enable) ? 1'b1 : 1'b0;
 
 endmodule
