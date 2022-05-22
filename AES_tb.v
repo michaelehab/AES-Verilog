@@ -1,4 +1,4 @@
-module AES_tb;
+module AES_tb();
 
 wire e128;
 wire d128;
@@ -13,6 +13,7 @@ AES a(enable, e128, d128, e192, d192, e256, d256);
 initial begin
 	$monitor("Encrypt128 = %b, Decrypt128 = %b, Encrypt192 = %b, Decrypt192 = %b, Encrypt256 = %b, Decrypt256 = %b",
 		e128, d128, e192, d192, e256, d256);
+		
 	// Turning on enable to check that all tests passed
 	enable = 1;
 	#10;
