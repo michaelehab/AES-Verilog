@@ -1,4 +1,4 @@
-# AES (Advanced Encryption Standard) 128-192-256 Verilog
+# Advanced encryption standard (AES128, AES192, AES256) in Verilog
 ![aes from Kekayan, Medium](https://user-images.githubusercontent.com/29122581/169694136-ca48f098-d5f5-448f-8016-4cb9a9b0e300.png)
 
 
