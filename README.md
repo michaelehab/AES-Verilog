@@ -1,6 +1,13 @@
 # Advanced encryption standard (AES128, AES192, AES256) in Verilog
 ![aes from Kekayan, Medium](https://user-images.githubusercontent.com/29122581/169694136-ca48f098-d5f5-448f-8016-4cb9a9b0e300.png)
-
+<div align="center">
+  
+  ![GitHub stars](https://img.shields.io/github/stars/michaelehab/AES-Verilog?style=plastic)
+  ![GitHub forks](https://img.shields.io/github/forks/michaelehab/AES-Verilog?style=plastic)
+  ![GitHub repo size](https://img.shields.io/github/repo-size/michaelehab/AES-Verilog?style=plastic)
+  ![GitHub top language](https://img.shields.io/github/languages/top/michaelehab/AES-Verilog?style=plastic)
+  
+</div>
 
 # Explanation:
 The Advanced Encryption Standard (AES) specifies a FIPS-approved
@@ -79,3 +86,8 @@ reg enable; // This switch enables the wrapper module
 AES a(enable, e128, d128, e192, d192, e256, d256);
 ...
 ```
+<div align="center">
+  
+  ![GitHub Repo Visitors](https://api.visitorbadge.io/api/VisitorHit?user=michaelehab&repo=AES-Verilog&countColor=%237B1E7A)
+  
+</div>
