@@ -1,30 +1,78 @@
 module keyExpansion #(parameter nk=4,parameter nr=10)(key,w);
-input [0 : (nk * 32) - 1] key;
+// The first [(nk*32)-1 ]-bit key that we use to generate the rest of the keys of the other rounds.
+// [(nk*32)-1 ] is the key length (128-bit key, 192-bit key or 256-bit key for nK=4,6 or 8 respectively).
+input [0 : (nk * 32) - 1] key;  
+// w represents the array that will store all the generated keys of all rounds.
+/* [(128 * (nr + 1)) - 1] this formula is meant to calculate the length of W ; so that it can store all the
+generated keys of all rounds.*/ 
 output reg [0 : (128 * (nr + 1)) - 1] w;
 reg [0:31] temp;
 reg [0:31] r;
-reg [0:31] rot;
-reg [0:31] x;
-reg [0:31] rconv;
+reg [0:31] rot; // It stores the returned value from the function rotword().
+reg [0:31] x;	//It stores the returned value from the function subwordx().
+reg [0:31] rconv; //It stores the returned value from the function rconx().
 reg [0:31]new;
 
 integer i;
+/*
+	We generate all the keys needed in the encryption and decryption at the beginning of the encryption or decryption
+ and store them, then we use them in the AES_Encrypt and AES_Decrypt modules as needed according to the current 
+ round.
+*/
+/*
+ The functions:
+ 1) subwordx() applies a table lookup to all to all four bytes of the sent word. subwordx() calls the function
+	 c() four times, each time it sends to c() 1-byte to perform the table lookup on it.
+ 2) rconx() contains the values given by [x^(i-1),{00},{00},{00}], with x^(i-1) being powers 
+	 of x (x is denoted as {02}) in the field GF(28).
+ 3) rotword() applies a cyclic shift of the bytes in a word. For example,{09cf4f3c} is changed into {cf4f3c09}
+	 after applying this function.
+*/
 
-
+/*
+		The pseudo-code of the this algorithm is found in the NIST.pdf attached to the repository with some modification
+	in the code to fit with verilog.
+*/
+/*
+		For simplicity, We are going to explain the storing mechanism of the generated keys on an example of
+	128-bit key.It would be easy to apply the same concept on 192-bit and 256-bit keys. We would explain it in one 
+	round only. The next rounds would perform the same operations.
+	
+	-The example:
+		-Note that in case of 128-bit key w[0:1407].
+		
+		1) when w=key then w= {1279*{0}:key} where 1279*{0} means that the first 1279 bits are all zero valued
+			and the end of the w array contains the current 128-bit key.
+		2) when temp = w[(128 * (nr + 1) - 32) +: 32] then temp=w[1376 +:32] so temp in the first round would contain
+			the last 32-bit word of the the current key. 
+		3) After performing (temp = SubWord(RotWord(temp)) xor Rcon[i/Nk]) or (temp = SubWord(temp)), We would perform
+			(new = w[(128*(nr+1)-(nk*32))+:32] ^ temp) which is (new=w[1280+:32] ^ temp) in the first round,
+			where w[(128*(nr+1)-(nk*32))+:32] here is equivelent to w[i-Nk] in the pseudo-code. Now we have the new
+			generated key word (new) and we need to add it at the end of (W) array.
+		4) We would shift W by 32-bit to the left to empty space to the new generated key word.
+		5) w = {w[0 : (128 * (nr + 1) - 32) - 1], new} is w={w[0:1375],new} where w now contains w={1247*{0}:key:new} 
+			where 1247*{0} means that the first 1247 bits are all zero valued and they are followed by the original 
+			128-bit key, which are followed by the new generated 32-bit key.
+		6) Repeat this process for the rest of the rounds.At the end of all the rounds we would have all the W array
+			filled with all the keys.
+	
+*/
 always@* begin
-	w = key;
+//The first [(nk*32)-1 ]-bit key is stored in W.
+	w = key;    
 	for(i = nk; i < 4*(nr + 1); i = i + 1) begin
 	temp = w[(128 * (nr + 1) - 32) +: 32];
 	if(i % nk == 0) begin
-		rot = rotword(temp);
-		x = subwordx (rot);
-		rconv = rconx (i/nk);
-		temp = x ^ rconv;
+		rot = rotword(temp); // A call to the function rotword() is done and the returned value is stored in rot.
+		x = subwordx (rot);	//A call to the function subwordx() is done and the returned value is stored in x.
+		rconv = rconx (i/nk); //A call to the function rconx() is done and the returned value is stored in rconv.
+		temp = x ^ rconv;   
 	end
 	else if(nk >6 && i % nk == 4) begin
 		temp = subwordx(temp);
 	end
 	new = (w[(128*(nr+1)-(nk*32))+:32] ^ temp);
+	// We would shift W by 32 bit to the left to add the new generated key word (new) at its end.
 	w = w << 32;
 	w = {w[0 : (128 * (nr + 1) - 32) - 1], new};
 end
