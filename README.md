@@ -24,7 +24,7 @@ and decrypt data in blocks of 128 bits
 
 # Usage
 
-**Encryption: (AES_Encrypt module)**
+**🔐Encryption: (AES_Encrypt module)**
 ```verilog
 ...
 wire[127:0] in = 128'h_00112233445566778899aabbccddeeff; // Plain Text example
@@ -45,7 +45,7 @@ AES_Encrypt #(256,14,8) c(in,key256,encrypted256);
 ...
 ```
 
-**Decryption: (AES_Decrypt module)**
+**🔓Decryption: (AES_Decrypt module)**
 ```verilog
 ...
 // This wire contains the encrypted text using the 128bit key
@@ -86,6 +86,14 @@ reg enable; // This switch enables the wrapper module
 AES a(enable, e128, d128, e192, d192, e256, d256);
 ...
 ```
+
+# 📷 Working Images
+Testing was done on DE1-SOC kit by implementing the wrapper module which generates the required inputs to the system and if tests passed it turns on the LEDs.
+## Enable turned off
+![disabled](https://user-images.githubusercontent.com/29122581/170337017-2246f4cf-f74e-4cbb-b4d8-f79b7436e2bd.jpg)
+## Enable turned on
+![enabled](https://user-images.githubusercontent.com/29122581/170337046-f8e7831a-081f-4685-b5aa-f520870f6d48.jpg)
+
 <div align="center">
   
   ![GitHub Repo Visitors](https://api.visitorbadge.io/api/VisitorHit?user=michaelehab&repo=AES-Verilog&countColor=%237B1E7A)
