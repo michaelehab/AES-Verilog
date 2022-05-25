@@ -1,6 +1,0 @@
-module inverseSbox(a,c);
-input  [7:0] a; 
-output reg [7:0] c;
-   
-
-endmodule

@@ -1,9 +1,0 @@
-module inverseMixColumns(in,out);
-input [127:0] in;
-output [127:0] out;
-
-function[7:0] multiply(input [7:0]x,input integer n);
-integer i;
-begin
-end
-endmodule
